@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  localtunnel:
+    image: wernight/ngrok
+    container_name: examplelocaltunnel
+    ports:
+      - '4040:4040'
+    links:
+      - app
+    environment:
+      - NGROK_PROTOCOL=${NGROK_PROTOCOL}
+      - NGROK_PORT=app:${APP_PORT}
+      - NGROK_AUTH=${NGROK_AUTH}
+
+  app:
+    container_name: python
+    image: crccheck/hello-world
+    ports:
+      - '80:${APP_PORT}'
