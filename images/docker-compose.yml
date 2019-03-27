@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  localtunnel:
+    image: ${ARTIFACTORY_REGISTRY}/localtunnel:${LT_VERSION}
+    container_name: docker_localtunnel
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+
+    ports:
+      - '4040:4040'
+    links:
+      - app
